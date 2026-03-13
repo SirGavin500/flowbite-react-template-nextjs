@@ -41,17 +41,16 @@ export default function Home() {
   ]
 
   return (
-    <main className="flex flex-col items-center bg-gray-950 text-white min-h-screen">
+    <main className="flex flex-col items-center bg-gray-950 text-white">
 
       {/* HERO */}
-      <section className="flex flex-col items-center justify-center text-center min-h-screen gap-6 px-6 relative">
+      <section className="flex flex-col items-center justify-center text-center py-16 sm:py-20 md:py-24 gap-4 sm:gap-6 md:gap-8 px-6 sm:px-8 md:px-12 relative">
 
-        {/* Hero content */}
         <motion.div
-          initial={{opacity:0,y:40}}
+          initial={{opacity:0,y:20}}
           animate={{opacity:1,y:0}}
           transition={{duration:0.6}}
-          className="flex flex-col items-center gap-4 z-10"
+          className="flex flex-col items-center gap-3 sm:gap-4 z-10"
         >
 
           <Image
@@ -59,25 +58,24 @@ export default function Home() {
             alt="profile"
             width={150}
             height={150}
-            className="rounded-full border-4 border-orange-500"
+            className="rounded-full border-4 border-orange-500 w-36 sm:w-40 md:w-48"
           />
 
-          <h1 className="text-5xl font-semibold">
+          <h1 className="text-4xl sm:text-5xl font-semibold">
             Gavin Tristan
           </h1>
 
-          <p className="text-gray-400 max-w-xl">
+          <p className="text-gray-400 max-w-xl text-base sm:text-lg md:text-xl">
             Junior Web Developer currently at CodeStack
           </p>
 
-          <div className="flex gap-4">
-            <Button href="#projects">
-              View Projects
-            </Button>
-
-            <Button color="gray" href="#contact">
-              Contact
-            </Button>
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+            <a href="#projects">
+              <Button>View Projects</Button>
+            </a>
+            <a href="#contact">
+              <Button color="gray">Contact</Button>
+            </a>
           </div>
 
         </motion.div>
@@ -85,16 +83,16 @@ export default function Home() {
       </section>
 
       {/* ABOUT */}
-      <section id="about" className="max-w-5xl px-6 py-24">
+      <section id="about" className="max-w-5xl px-6 sm:px-8 md:px-12 py-12 sm:py-16 md:py-20">
         <motion.div
-          initial={{opacity:0,y:40}}
+          initial={{opacity:0,y:20}}
           whileInView={{opacity:1,y:0}}
           transition={{duration:0.6}}
           viewport={{once:true}}
-          className="flex flex-col gap-6"
+          className="flex flex-col gap-4 sm:gap-6"
         >
           <h2 className="text-3xl">About Me</h2>
-          <p className="text-gray-400 leading-relaxed text-2xl">
+          <p className="text-gray-400 leading-relaxed text-base sm:text-lg md:text-xl">
             I'm a Junior Web Developer currently sharpening my skills at CodeStack Academy. My focus is on building modern, responsive web applications that don't just work—they feel intuitive to use. I'm happiest turning a complex design or rough idea into a functional, high-performance website using JavaScript, React, Next.js, and Tailwind CSS.
             <br /><br />
             I thrive on creating clean, scalable code that looks as good as it performs. Collaboration is key, and I love learning from other developers, refining components, and experimenting with new libraries. I'm constantly growing, building, and contributing to projects that make an impact.
@@ -103,20 +101,20 @@ export default function Home() {
       </section>
 
       {/* PROJECTS */}
-      <section id="projects" className="max-w-6xl px-6 py-24 w-full">
+      <section id="projects" className="max-w-6xl px-6 sm:px-8 md:px-12 py-12 sm:py-16 md:py-20 w-full">
         <motion.div
           initial={{opacity:0}}
           whileInView={{opacity:1}}
           transition={{duration:0.6}}
           viewport={{once:true}}
-          className="flex flex-col gap-12"
+          className="flex flex-col gap-8 sm:gap-10 md:gap-12"
         >
           <h2 className="text-3xl">Projects</h2>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
             {projects.map((project,i)=>(
               <motion.div
                 key={i}
-                initial={{opacity:0,y:40}}
+                initial={{opacity:0,y:20}}
                 whileInView={{opacity:1,y:0}}
                 transition={{delay:i*0.2}}
                 viewport={{once:true}}
@@ -131,13 +129,13 @@ export default function Home() {
                   <p className="text-gray-400">
                     {project.description}
                   </p>
-                  <div className="flex gap-2 mt-2">
-                    <Button href={project.live} size="sm">
-                      Website
-                    </Button>
-                    <Button color="gray" href={project.code} size="sm">
-                      Code
-                    </Button>
+                  <div className="flex gap-2 mt-2 flex-wrap">
+                    <a href={project.live} target="_blank" rel="noopener noreferrer">
+                      <Button size="sm">Website</Button>
+                    </a>
+                    <a href={project.code} target="_blank" rel="noopener noreferrer">
+                      <Button color="gray" size="sm">Code</Button>
+                    </a>
                   </div>
                 </Card>
               </motion.div>
@@ -147,16 +145,16 @@ export default function Home() {
       </section>
 
       {/* SKILLS */}
-      <section id="skills" className="max-w-6xl px-6 py-24 w-full">
+      <section id="skills" className="max-w-6xl px-6 sm:px-8 md:px-12 py-12 sm:py-16 md:py-20 w-full">
         <motion.div
           initial={{opacity:0}}
           whileInView={{opacity:1}}
           transition={{duration:0.6}}
           viewport={{once:true}}
-          className="flex flex-col gap-12 items-center"
+          className="flex flex-col gap-8 sm:gap-10 md:gap-12 items-center"
         >
           <h2 className="text-3xl">Tech Stack</h2>
-          <div className="grid grid-cols-3 md:grid-cols-6 gap-10 text-center text-gray-300">
+          <div className="grid grid-cols-3 md:grid-cols-6 gap-6 sm:gap-8 md:gap-10 text-center text-gray-300">
             <div className="flex flex-col items-center gap-2 hover:scale-110 transition">
               <i className="devicon-javascript-plain text-5xl text-yellow-400"></i>
               <p>JavaScript</p>
@@ -185,42 +183,37 @@ export default function Home() {
         </motion.div>
       </section>
 
-     <section id="contact" className="max-w-4xl px-6 py-24 text-center">
-  <motion.div
-    initial={{ opacity: 0, y: 40 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.6 }}
-    viewport={{ once: true }}
-    className="flex flex-col gap-6 items-center"
-  >
-    <h2 className="text-3xl">Contact</h2>
-    <p className="text-gray-400">
-      If you'd like to work together or just say hi, feel free to reach out.
-    </p>
+      {/* CONTACT */}
+      <section id="contact" className="max-w-4xl px-6 sm:px-8 md:px-12 py-12 sm:py-16 md:py-20 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="flex flex-col gap-4 sm:gap-6 items-center"
+        >
+          <h2 className="text-3xl">Contact</h2>
+          <p className="text-gray-400 text-base sm:text-lg">
+            If you'd like to work together or just say hi, feel free to reach out.
+          </p>
 
-    <div className="flex flex-col md:flex-row gap-4">
-      {/* Email Button */}
-      <a href="mailto:gtristan@codestack.co" target="_blank" rel="noopener noreferrer">
-        <Button>Email Me</Button>
-      </a>
-
-      {/* GitHub Button */}
-      <a href="https://github.com/SirGavin500" target="_blank" rel="noopener noreferrer">
-        <Button color="gray">GitHub</Button>
-      </a>
-
-      {/* LinkedIn Button */}
-      <a href="https://www.linkedin.com/in/your-linkedin" target="_blank" rel="noopener noreferrer">
-        <Button color="blue">LinkedIn</Button>
-      </a>
-    </div>
-
-    <p className="text-gray-400 mt-2">Phone: +1 (234) 567-890</p>
-  </motion.div>
-</section>
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 flex-wrap justify-center">
+            <a href="mailto:gtristan@codestack.co" target="_blank" rel="noopener noreferrer">
+              <Button>Email Me</Button>
+            </a>
+            <a href="https://github.com/SirGavin500" target="_blank" rel="noopener noreferrer">
+              <Button color="gray">GitHub</Button>
+            </a>
+            <a href="https://www.linkedin.com/in/your-linkedin" target="_blank" rel="noopener noreferrer">
+              <Button color="blue">LinkedIn</Button>
+            </a>
+          </div>
+          <p className="text-gray-400 mt-2 text-sm sm:text-base">Phone: +1 (234) 567-890</p>
+        </motion.div>
+      </section>
 
       {/* FOOTER */}
-      <footer className="py-10 text-gray-500">
+      <footer className="py-6 sm:py-8 md:py-10 text-gray-500 text-sm sm:text-base">
         © 2026 Gavin Tristan LLC
       </footer>
 
