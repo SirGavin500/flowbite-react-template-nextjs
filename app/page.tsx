@@ -1,223 +1,229 @@
-import { DarkThemeToggle } from "flowbite-react";
-import Image from "next/image";
+"use client"
+
+import { motion, useAnimationFrame } from "motion/react"
+import { Button, Card } from "flowbite-react"
+import Image from "next/image"
+import { useRef } from "react"
 
 export default function Home() {
-  const CARDS = [
+
+  const cubeRef = useRef<HTMLDivElement>(null)
+
+  useAnimationFrame((t) => {
+    if (!cubeRef.current) return
+    const rotate = Math.sin(t / 10000) * 200
+    const y = (1 + Math.sin(t / 1000)) * -50
+    cubeRef.current.style.transform = `translateY(${y}px) rotateX(${rotate}deg) rotateY(${rotate}deg)`
+  })
+
+  const projects = [
     {
-      title: "Flowbite React Docs",
-      description:
-        "Learn more on how to get started and use the Flowbite React components",
-      url: "https://flowbite-react.com/",
-      icon: (
-        <svg
-          className="h-9 w-9 text-gray-500"
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          fill="none"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="1.5"
-            d="M12 6.03v13m0-13c-2.819-.831-4.715-1.076-8.029-1.023A.99.99 0 0 0 3 6v11c0 .563.466 1.014 1.03 1.007 3.122-.043 5.018.212 7.97 1.023m0-13c2.819-.831 4.715-1.076 8.029-1.023A.99.99 0 0 1 21 6v11c0 .563-.466 1.014-1.03 1.007-3.122-.043-5.018.212-7.97 1.023"
-          />
-        </svg>
-      ),
+      title: "Weather Tracker",
+      description: "This is a web App I created modeled after another Dev's Figma",
+      image: "/Assets/weathersprint.png",
+      live: "https://gavinsbuildofsamsweatherapp.vercel.app/",
+      code: "https://github.com/SirGavin500/WeatherTracker"
     },
     {
-      title: "Flowbite Blocks",
-      description:
-        "Get started with over 450 blocks to build websites even faster",
-      url: "https://flowbite.com/blocks/",
-      icon: (
-        <svg
-          className="h-9 w-9 text-gray-500"
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          fill="none"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="1.5"
-            d="M9.143 4H4.857A.857.857 0 0 0 4 4.857v4.286c0 .473.384.857.857.857h4.286A.857.857 0 0 0 10 9.143V4.857A.857.857 0 0 0 9.143 4Zm10 0h-4.286a.857.857 0 0 0-.857.857v4.286c0 .473.384.857.857.857h4.286A.857.857 0 0 0 20 9.143V4.857A.857.857 0 0 0 19.143 4Zm-10 10H4.857a.857.857 0 0 0-.857.857v4.286c0 .473.384.857.857.857h4.286a.857.857 0 0 0 .857-.857v-4.286A.857.857 0 0 0 9.143 14Zm10 0h-4.286a.857.857 0 0 0-.857.857v4.286c0 .473.384.857.857.857h4.286a.857.857 0 0 0 .857-.857v-4.286a.857.857 0 0 0-.857-.857Z"
-          />
-        </svg>
-      ),
+      title: "Rock Paper Scissor Lizard Spock",
+      description: "As seen in the popular Sitcom 'Big Bang Theory' this game plays just like rock paper scissor shoot, just with extra steps.",
+      image: "/Assets/rpsls2.png",
+      live: "https://salmon-bay-0d4e1231e.6.azurestaticapps.net/",
+      code: "https://github.com/SirGavin500/RPSLS"
     },
     {
-      title: "Flowbite Icons",
-      description:
-        "Get started with over 650+ SVG free and open-source icons for your apps",
-      url: "https://flowbite.com/icons/",
-      icon: (
-        <svg
-          className="h-9 w-9 text-gray-500"
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          fill="none"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="1.5"
-            d="M11 6.5h2M11 18h2m-7-5v-2m12 2v-2M5 8h2a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1Zm0 12h2a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1Zm12 0h2a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1h-2a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1Zm0-12h2a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1h-2a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1Z"
-          />
-        </svg>
-      ),
-    },
-    {
-      title: "Flowbite Illustrations",
-      description:
-        "Start using over 50+ SVG illustrations in 3D style to add character to your apps",
-      url: "https://flowbite.com/illustrations/",
-      icon: (
-        <svg
-          className="h-9 w-9 text-gray-500"
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          fill="none"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="1.5"
-            d="m3 16 5-7 6 6.5m6.5 2.5L16 13l-4.286 6M14 10h.01M4 19h16a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1Z"
-          />
-        </svg>
-      ),
-    },
-    {
-      title: "Flowbite Pro",
-      description:
-        "Upgrade your development stack with more components and templates from Flowbite",
-      url: "https://flowbite.com/pro/",
-      icon: (
-        <Image
-          alt="Flowbite Pro logo"
-          src="/flowbite.svg"
-          width={36}
-          height={36}
-        />
-      ),
-    },
-    {
-      title: "Flowbite Figma",
-      description:
-        "Use our Figma Design System to design and collaborate better within your team",
-      url: "https://flowbite.com/figma/",
-      icon: <Image alt="Figma logo" src="/figma.svg" width={36} height={36} />,
-    },
-  ];
+      title: "Business Redesign",
+      description: "We took our Local Juicy Burger and Designed a potential Website Design",
+      image: "/Assets/juicyburger.png",
+      live: "https://www.figma.com/design/suGysXzJXlHXSfJdaDeemy/Business-Redesign?node-id=0-1&t=P7Y79o8AbMO7ixxC-1",
+      code: "https://github.com/SirGavin500/BusinessRedesign"
+    }
+  ]
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-white px-4 py-24 dark:bg-gray-900">
-      <div className="absolute inset-0 size-full">
-        <div className="relative h-full w-full select-none">
-          <Image
-            className="absolute right-0 min-w-dvh dark:hidden"
-            alt="Pattern Light"
-            src="/pattern-light.svg"
-            width="803"
-            height="774"
-          />
-          <Image
-            className="absolute right-0 hidden min-w-dvh dark:block"
-            alt="Pattern Dark"
-            src="/pattern-dark.svg"
-            width="803"
-            height="775"
-          />
-        </div>
-      </div>
-      <div className="absolute top-4 right-4">
-        <DarkThemeToggle />
-      </div>
+    <main className="flex flex-col items-center bg-gray-950 text-white min-h-screen">
 
-      <div className="relative flex w-full max-w-5xl flex-col items-center justify-center gap-12">
-        <div className="relative flex flex-col items-center gap-6">
-          <h1 className="relative text-center text-4xl leading-[125%] font-bold text-gray-900 dark:text-gray-200">
-            Build fast with us
+      {/* HERO */}
+      <section className="flex flex-col items-center justify-center text-center min-h-screen gap-6 px-6 relative">
+
+        {/* Hero content */}
+        <motion.div
+          initial={{opacity:0,y:40}}
+          animate={{opacity:1,y:0}}
+          transition={{duration:0.6}}
+          className="flex flex-col items-center gap-4 z-10"
+        >
+
+          <Image
+            src="/Assets/IMG_5651.jpg"
+            alt="profile"
+            width={150}
+            height={150}
+            className="rounded-full border-4 border-orange-500"
+          />
+
+          <h1 className="text-5xl font-semibold">
+            Gavin Tristan
           </h1>
-          <span className="inline-flex flex-wrap items-center justify-center gap-2.5 text-center">
-            <span className="inline text-xl text-gray-600 dark:text-gray-400">
-              Your app is ready, start building with
-            </span>
-            <span className="relative inline-flex items-center gap-2">
-              <Image
-                className="size-6"
-                alt="Flowbite React logo"
-                src="/flowbite-react.svg"
-                width={24}
-                height={24}
-              />
-              <span className="relative w-fit text-xl font-semibold whitespace-nowrap text-[#111928] dark:text-white">
-                Flowbite React
-              </span>
-            </span>
-            <h2 className="inline text-xl text-gray-600 dark:text-gray-400">
-              now.
-            </h2>
-          </span>
-        </div>
 
-        <div className="relative flex w-full flex-col items-start gap-6 self-stretch">
-          <div className="grid w-full grid-cols-1 gap-6 md:grid-cols-2">
-            {CARDS.map((card) => (
-              <a
-                key={card.title}
-                href={card.url}
-                target="_blank"
-                className="outline-primary-600 dark:outline-primary-500 group hover:border-primary-600 dark:hover:border-primary-500 cursor-pointer overflow-hidden rounded-xl border border-gray-200 bg-gray-50 outline-offset-2 focus:outline-2 dark:border-gray-700 dark:bg-gray-800"
+          <p className="text-gray-400 max-w-xl">
+            Junior Web Developer currently at CodeStack
+          </p>
+
+          <div className="flex gap-4">
+            <Button href="#projects">
+              View Projects
+            </Button>
+
+            <Button color="gray" href="#contact">
+              Contact
+            </Button>
+          </div>
+
+        </motion.div>
+
+      </section>
+
+      {/* ABOUT */}
+      <section id="about" className="max-w-5xl px-6 py-24">
+        <motion.div
+          initial={{opacity:0,y:40}}
+          whileInView={{opacity:1,y:0}}
+          transition={{duration:0.6}}
+          viewport={{once:true}}
+          className="flex flex-col gap-6"
+        >
+          <h2 className="text-3xl">About Me</h2>
+          <p className="text-gray-400 leading-relaxed text-2xl">
+            I'm a Junior Web Developer currently sharpening my skills at CodeStack Academy. My focus is on building modern, responsive web applications that don't just work—they feel intuitive to use. I'm happiest turning a complex design or rough idea into a functional, high-performance website using JavaScript, React, Next.js, and Tailwind CSS.
+            <br /><br />
+            I thrive on creating clean, scalable code that looks as good as it performs. Collaboration is key, and I love learning from other developers, refining components, and experimenting with new libraries. I'm constantly growing, building, and contributing to projects that make an impact.
+          </p>
+        </motion.div>
+      </section>
+
+      {/* PROJECTS */}
+      <section id="projects" className="max-w-6xl px-6 py-24 w-full">
+        <motion.div
+          initial={{opacity:0}}
+          whileInView={{opacity:1}}
+          transition={{duration:0.6}}
+          viewport={{once:true}}
+          className="flex flex-col gap-12"
+        >
+          <h2 className="text-3xl">Projects</h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            {projects.map((project,i)=>(
+              <motion.div
+                key={i}
+                initial={{opacity:0,y:40}}
+                whileInView={{opacity:1,y:0}}
+                transition={{delay:i*0.2}}
+                viewport={{once:true}}
               >
-                <div className="flex items-center gap-6 p-4">
-                  <div className="flex flex-1 items-center gap-2">
-                    <div className="size-9">{card.icon}</div>
-
-                    <div className="flex flex-1 flex-col items-start justify-center gap-1.5 border-l border-gray-200 pl-3.5 dark:border-gray-700">
-                      <div className="w-full font-sans text-lg leading-4 font-semibold text-gray-900 dark:text-gray-200">
-                        {card.title}
-                      </div>
-
-                      <div className="w-full font-sans text-sm leading-5 font-normal text-gray-500 dark:text-gray-400">
-                        {card.description}
-                      </div>
-                    </div>
+                <Card
+                  imgSrc={project.image}
+                  className="bg-gray-900 border-gray-800 hover:scale-105 transition"
+                >
+                  <h5 className="text-xl tracking-tight text-white">
+                    {project.title}
+                  </h5>
+                  <p className="text-gray-400">
+                    {project.description}
+                  </p>
+                  <div className="flex gap-2 mt-2">
+                    <Button href={project.live} size="sm">
+                      Website
+                    </Button>
+                    <Button color="gray" href={project.code} size="sm">
+                      Code
+                    </Button>
                   </div>
-
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="group-hover:text-primary-600 dark:group-hover:text-primary-500 h-6 w-6 text-gray-500 transition-transform group-hover:translate-x-1"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      clipRule="evenodd"
-                      d="M14.2929 7.29289C14.6834 6.90237 15.3166 6.90237 15.7071 7.29289L19.7071 11.2929C19.8946 11.4804 20 11.7348 20 12C20 12.2652 19.8946 12.5196 19.7071 12.7071L15.7071 16.7071C15.3166 17.0976 14.6834 17.0976 14.2929 16.7071C13.9024 16.3166 13.9024 15.6834 14.2929 15.2929L16.5858 13H5C4.44772 13 4 12.5523 4 12C4 11.4477 4.44772 11 5 11H16.5858L14.2929 8.70711C13.9024 8.31658 13.9024 7.68342 14.2929 7.29289Z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                </div>
-              </a>
+                </Card>
+              </motion.div>
             ))}
           </div>
-        </div>
-      </div>
+        </motion.div>
+      </section>
+
+      {/* SKILLS */}
+      <section id="skills" className="max-w-6xl px-6 py-24 w-full">
+        <motion.div
+          initial={{opacity:0}}
+          whileInView={{opacity:1}}
+          transition={{duration:0.6}}
+          viewport={{once:true}}
+          className="flex flex-col gap-12 items-center"
+        >
+          <h2 className="text-3xl">Tech Stack</h2>
+          <div className="grid grid-cols-3 md:grid-cols-6 gap-10 text-center text-gray-300">
+            <div className="flex flex-col items-center gap-2 hover:scale-110 transition">
+              <i className="devicon-javascript-plain text-5xl text-yellow-400"></i>
+              <p>JavaScript</p>
+            </div>
+            <div className="flex flex-col items-center gap-2 hover:scale-110 transition">
+              <i className="devicon-react-original text-5xl text-cyan-400"></i>
+              <p>React</p>
+            </div>
+            <div className="flex flex-col items-center gap-2 hover:scale-110 transition">
+              <i className="devicon-nextjs-line text-5xl"></i>
+              <p>NextJS</p>
+            </div>
+            <div className="flex flex-col items-center gap-2 hover:scale-110 transition">
+              <i className="devicon-tailwindcss-original text-5xl text-sky-400"></i>
+              <p>Tailwind</p>
+            </div>
+            <div className="flex flex-col items-center gap-2 hover:scale-110 transition">
+              <i className="devicon-nodejs-plain text-5xl text-green-500"></i>
+              <p>NodeJS</p>
+            </div>
+            <div className="flex flex-col items-center gap-2 hover:scale-110 transition">
+              <i className="devicon-csharp-plain text-5xl text-purple-400"></i>
+              <p>C#</p>
+            </div>
+          </div>
+        </motion.div>
+      </section>
+
+     <section id="contact" className="max-w-4xl px-6 py-24 text-center">
+  <motion.div
+    initial={{ opacity: 0, y: 40 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.6 }}
+    viewport={{ once: true }}
+    className="flex flex-col gap-6 items-center"
+  >
+    <h2 className="text-3xl">Contact</h2>
+    <p className="text-gray-400">
+      If you'd like to work together or just say hi, feel free to reach out.
+    </p>
+
+    <div className="flex flex-col md:flex-row gap-4">
+      {/* Email Button */}
+      <a href="mailto:gtristan@codestack.co" target="_blank" rel="noopener noreferrer">
+        <Button>Email Me</Button>
+      </a>
+
+      {/* GitHub Button */}
+      <a href="https://github.com/SirGavin500" target="_blank" rel="noopener noreferrer">
+        <Button color="gray">GitHub</Button>
+      </a>
+
+      {/* LinkedIn Button */}
+      <a href="https://www.linkedin.com/in/your-linkedin" target="_blank" rel="noopener noreferrer">
+        <Button color="blue">LinkedIn</Button>
+      </a>
+    </div>
+
+    <p className="text-gray-400 mt-2">Phone: +1 (234) 567-890</p>
+  </motion.div>
+</section>
+
+      {/* FOOTER */}
+      <footer className="py-10 text-gray-500">
+        © 2026 Gavin Tristan LLC
+      </footer>
+
     </main>
-  );
+  )
 }
