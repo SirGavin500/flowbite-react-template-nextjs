@@ -35,7 +35,6 @@ export default function RootLayout({
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
         />
-        <ThemeInit />
         {children}
       </body>
     </html>

@@ -3,18 +3,11 @@
 import { motion, useAnimationFrame } from "motion/react"
 import { Button, Card } from "flowbite-react"
 import Image from "next/image"
-import { useRef } from "react"
 
 export default function Home() {
 
-  const cubeRef = useRef<HTMLDivElement>(null)
 
-  useAnimationFrame((t) => {
-    if (!cubeRef.current) return
-    const rotate = Math.sin(t / 10000) * 200
-    const y = (1 + Math.sin(t / 1000)) * -50
-    cubeRef.current.style.transform = `translateY(${y}px) rotateX(${rotate}deg) rotateY(${rotate}deg)`
-  })
+  
 
   const projects = [
     {
@@ -22,7 +15,7 @@ export default function Home() {
       description: "This is a web App I created modeled after another Dev's Figma",
       image: "/Assets/weathersprint.png",
       live: "https://gavinsbuildofsamsweatherapp.vercel.app/",
-      code: "https://github.com/SirGavin500/WeatherTracker"
+      code: "https://github.com/SirGavin500/WeatherFigmaBuild"
     },
     {
       title: "Rock Paper Scissor Lizard Spock",
